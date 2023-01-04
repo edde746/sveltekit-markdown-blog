@@ -3,6 +3,8 @@
   import classnames from 'classnames';
   export let article: Partial<Article>;
   export let wide = false;
+
+  $: href = `/${article.Categories?.at(0) ?? 'uncategorized'}/${article.Slug}`;
 </script>
 
 {#if wide}
@@ -11,7 +13,7 @@
       'rounded-lg overflow-hidden items-center flex gap-6 group bg-white/5 hover:bg-white/10 transition duration-300 p-4',
       $$props.class
     )}
-    href="/{article.Slug}"
+    {href}
   >
     <img
       src={article.Thumbnail}
@@ -42,7 +44,7 @@
     </div>
   </a>
 {:else}
-  <a class={classnames('relative rounded-lg overflow-hidden aspect-video group', $$props.class)} href="/{article.Slug}">
+  <a class={classnames('relative rounded-lg overflow-hidden aspect-video group', $$props.class)} {href}>
     <img
       src={article.Thumbnail}
       alt={article.Title}
