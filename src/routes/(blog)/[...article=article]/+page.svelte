@@ -94,7 +94,7 @@
   <!-- TODO: actually pick related articles? -->
   {#if true}
     {@const index = Math.floor(Math.random() * (data.articles.length - 4))}
-    <div class="grid gap-4">
+    <div class="grid gap-4 mb-6">
       {#each data.articles
         .filter((article) => article.Slug != $page.params.article.split('/').at(-1))
         .slice(index, index + 3) as article}
