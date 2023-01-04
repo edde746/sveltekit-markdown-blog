@@ -56,9 +56,11 @@
   {#if articles.length > articlesPerPage}
     <div class="flex justify-center mb-6">
       <div class="inline-flex bg-white/5 w-min rounded-lg">
-        <a class="page-btn" href={pageUrl(pageNumber - 1)}>
-          <Icon src={ChevronLeft} class="w-4 h-4" />
-        </a>
+        {#if pageNumber > 1}
+          <a class="page-btn" href={pageUrl(pageNumber - 1)}>
+            <Icon src={ChevronLeft} class="w-4 h-4" />
+          </a>
+        {/if}
         {#each Array(Math.ceil(articles.length / articlesPerPage)) as _, i}
           <a
             class={classnames('page-btn', {
@@ -69,9 +71,11 @@
             {i + 1}
           </a>
         {/each}
-        <a class="page-btn" href={pageUrl(pageNumber + 1)}>
-          <Icon src={ChevronRight} class="w-4 h-4" />
-        </a>
+        {#if articles.length > articlesPerPage * pageNumber}
+          <a class="page-btn" href={pageUrl(pageNumber + 1)}>
+            <Icon src={ChevronRight} class="w-4 h-4" />
+          </a>
+        {/if}
       </div>
     </div>
   {/if}
