@@ -2,6 +2,10 @@
 
 A simple blog that statically generates from markdown files. Built with [SvelteKit](https://kit.svelte.dev/).
 
+## Demo
+
+[**View a live demo here**](https://blog-demo-cy4.pages.dev/)
+
 ## Features
 
 - Fully static
