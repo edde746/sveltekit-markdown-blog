@@ -56,3 +56,16 @@ export const titleCase = (str: string) =>
     .split(' ')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
+
+export const makeDescription = (text: string) => {
+  // strip html tags
+  const stripped = text.replace(/(<([^>]+)>)/gi, '');
+
+  // truncate to 160 characters
+  const truncated = stripped.slice(0, 160);
+
+  // remove trailing punctuation
+  const trimmed = truncated.replace(/[,.;:!?]$/, '');
+
+  return trimmed + '...';
+};

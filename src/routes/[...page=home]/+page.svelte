@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { page } from '$app/stores';
+  import { navigating, page } from '$app/stores';
   import type { PageData } from './$types';
   import Article from './Article.svelte';
   import { titleCase } from '$lib/helpers';
@@ -20,7 +20,35 @@
   $: articles = data.articles
     // Filter by category
     .filter((article) => !category || article.Categories.includes(category || ''));
+
+  $: title = category
+    ? pageNumber === 1
+      ? titleCase(category)
+      : `Page ${pageNumber} - ${titleCase(category)}`
+    : pageNumber != 1
+    ? `Page ${pageNumber}`
+    : null;
 </script>
+
+<svelte:head>
+  {#if title}
+    {#key title}
+      <title>{title} - {import.meta.env._NAME}</title>
+      {#if category}
+        <meta
+          name="description"
+          content="Explore a variety of {category} topics on {import.meta.env
+            ._NAME}. From beginner tips to expert insights, we have something for everyone."
+        />
+      {:else}
+        <meta name="description" content={import.meta.env._DESCRIPTION} />
+      {/if}
+    {/key}
+  {:else}
+    <title>{import.meta.env._NAME}</title>
+    <meta name="description" content={import.meta.env._DESCRIPTION} />
+  {/if}
+</svelte:head>
 
 <section id="articles">
   {#if category}

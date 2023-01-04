@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { stringColor } from '$lib/helpers';
+  import { makeDescription, stringColor } from '$lib/helpers';
   import { Marked } from '@ts-stack/markdown';
   import { Icon } from '@steeze-ui/svelte-icon';
   import { Twitter, Facebook, Reddit } from '@steeze-ui/simple-icons';
@@ -9,6 +9,17 @@
 
   export let data: PageData;
 </script>
+
+<svelte:head>
+  <title>{data.header.Title} - {import.meta.env._NAME}</title>
+  <meta name="description" content={makeDescription(data.content)} />
+  <meta property="og:image" content={data.header.Thumbnail} />
+  <meta property="article:published_time" content={data.header.Published.toISOString()} />
+  <meta property="article:author" content={data.header.Author} />
+  <meta property="article:section" content={data.header.Categories[0]} />
+  <meta property="article:tag" content={data.header.Categories.join(',')} />
+  <meta property="og:type" content="article" />
+</svelte:head>
 
 <div>
   <div class="mb-6">
