@@ -9,31 +9,19 @@
   import classnames from 'classnames';
 
   export let data: PageData;
-  $: pageNumber = Number($page.url.searchParams.get('page')) || 1;
+  $: pageNumber = Number($page.params.page) || Number($page.params.page.split('/')?.at(1)) || 1;
+  $: paramIsNumber = !isNaN(Number($page.params.page));
   $: featuredCategories = import.meta.env._FEATURED_CATEGORIES.split(',');
   $: featuredArticles = import.meta.env._FEATURED_ARTICLES.split(',');
 
   const articlesPerPage = 10;
 
-  const pageUrl = (page: number) => {
-    const url = new URL($page.url);
-    url.searchParams.set('page', page.toString());
-    return url.toString();
-  };
+  const pageUrl = (page: number) => `/${page}`;
+  $: category = $page.params.page.includes('/') || !paramIsNumber ? $page.params.page.split('/')[0] : undefined;
 
   $: articles = data.articles
     // Filter by category
-    .filter(
-      (article) =>
-        !$page.url.searchParams.has('category') ||
-        article.Categories.includes($page.url.searchParams.get('category') || '')
-    )
-    // Filter by query
-    .filter(
-      (article) =>
-        !$page.url.searchParams.has('query') ||
-        article.Title.toLowerCase().includes($page.url.searchParams.get('query')?.toLowerCase() || '')
-    );
+    .filter((article) => !category || article.Categories.includes(category || ''));
 </script>
 
 <main class="max-w-5xl mx-auto p-4">
@@ -43,10 +31,7 @@
     </a>
     <nav class="flex gap-3 items-center">
       {#each featuredCategories as category}
-        <a
-          href={`?category=${category}&page=1`}
-          class="text-text-gray-700 hover:text-blue-100 font-semibold transition uppercase"
-        >
+        <a href="/{category}" class="text-text-gray-700 hover:text-blue-100 font-semibold transition uppercase">
           {category}
         </a>
       {/each}
@@ -63,14 +48,10 @@
   </header>
   <div class="grid grid-cols-[1fr_16rem] gap-4">
     <section id="articles">
-      {#if $page.url.searchParams.has('query')}
-        <div>
-          <h2 class="text-2xl font-semibold mb-4">Search: {$page.url.searchParams.get('query')}</h2>
-        </div>
-      {:else if $page.url.searchParams.has('category')}
+      {#if category}
         <div>
           <h2 class="text-2xl font-semibold mb-4">
-            {titleCase($page.url.searchParams.get('category') || 'Unknown Category')}
+            {titleCase(category)}
           </h2>
         </div>
       {:else if pageNumber === 1}
