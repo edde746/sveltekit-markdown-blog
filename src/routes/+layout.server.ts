@@ -18,7 +18,7 @@ export const load: PageServerLoad = async ({ url }) => {
         return {
           Slug: file.replace('.md', ''),
           ...header,
-        };
+        } as Article;
       })
     ).then((articles) => articles.sort((a, b) => b.Published.getTime() - a.Published.getTime()))) as Article[],
   };

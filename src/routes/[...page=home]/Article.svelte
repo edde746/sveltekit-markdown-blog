@@ -23,12 +23,13 @@
     <div>
       <div class="flex gap-2">
         {#each article.Categories || [] as category}
-          <span
+          <a
+            href="/{category}"
             class="text-white text-xs font-semibold px-2 py-1 rounded-md uppercase"
             style="background:{stringColor(category)}"
           >
             {category}
-          </span>
+          </a>
         {/each}
       </div>
       <h2 class="text-white font-semibold text-lg">{article.Title}</h2>
@@ -56,12 +57,13 @@
     <div class="absolute inset-x-0 bottom-0 p-4">
       <div class="flex gap-2">
         {#each article.Categories || [] as category}
-          <span
+          <a
+            href="/{category}"
             class="text-white text-xs font-semibold px-2 py-1 rounded-md uppercase"
             style="background:{stringColor(category)}"
           >
             {category}
-          </span>
+          </a>
         {/each}
       </div>
       <h2 class="text-white font-semibold text-lg mt-2">{article.Title}</h2>
