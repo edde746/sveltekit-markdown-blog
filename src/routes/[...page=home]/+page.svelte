@@ -59,11 +59,11 @@
     </div>
   {:else if pageNumber === 1}
     <!-- Featured -->
-    <div class="grid grid-cols-2 gap-4 mb-8">
+    <div class="grid md:grid-cols-2 gap-4 mb-8">
       {#each featuredArticles as slug, i}
         {@const article = data.articles.find((article) => article.Slug === slug)}
         {#if article}
-          <Article {article} class={i == 0 ? 'col-span-2' : ''} />
+          <Article {article} class={i == 0 ? 'md:col-span-2' : ''} />
         {/if}
       {/each}
     </div>
