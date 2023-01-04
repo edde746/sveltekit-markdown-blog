@@ -1,38 +1,50 @@
-# create-svelte
+# sveltekit-markdown-blog
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+A simple blog that statically generates from markdown files. Built with [SvelteKit](https://kit.svelte.dev/).
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Fully static
+- Markdown files
+- Dark mode
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## Running Locally
 
-# create a new project in my-app
-npm create svelte@latest my-app
+```
+# Clone the repository
+git clone https://github.com/edde746/sveltekit-markdown-blog.git
+
+# Navigate to the project directory
+cd sveltekit-markdown-blog
+
+# Install dependencies with pnpm
+pnpm install
+
+# Run the development server
+pnpm run dev
+
+# Generate the static site
+pnpm run build
 ```
 
-## Developing
+## Adding Posts
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+To add a new post, create a markdown file in the `posts` directory. The file should have the following front matter at the top:
 
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```md
+<!-- 
+    Title: <title of the post>
+    Author: <your name here>
+    Published: <date in YYYY-MM-DD HH:MM format>
+    Categories: <comma-separated list of categories>
+    Thumbnail: <url, e.g. images/image.webp then put that image in the static/images folder>
+-->
 ```
 
-## Building
+## Deploying
 
-To create a production version of your app:
+To deploy your blog, you can simply upload the contents of the `build` directory to your web server. Alternatively, you can use a static site hosting service such as [Cloudflare Pages](https://pages.cloudflare.com/).
 
-```bash
-npm run build
-```
+## License
 
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Use it however you want.
