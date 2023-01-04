@@ -4,6 +4,8 @@
   import { Icon } from '@steeze-ui/svelte-icon';
   import { Twitter, Facebook, Reddit } from '@steeze-ui/simple-icons';
   import type { PageData } from './$types';
+  import Article from '../[...page=home]/Article.svelte';
+  import { page } from '$app/stores';
 
   export let data: PageData;
 </script>
@@ -71,7 +73,22 @@
     </div>
   </div>
 
-  <article class="prose-invert prose">
+  <article class="prose-invert prose mb-6">
     {@html Marked.parse(data.content)}
   </article>
+
+  <hr class="border-neutral-300 mb-4" />
+
+  <h2 class="text-2xl font-semibold mb-4">Related Articles</h2>
+  <!-- TODO: actually pick related articles? -->
+  {#if true}
+    {@const index = Math.floor(Math.random() * (data.articles.length - 4))}
+    <div class="grid gap-4">
+      {#each data.articles
+        .filter((article) => article.Slug != $page.params.article.split('/').at(-1))
+        .slice(index, index + 3) as article}
+        <Article {article} wide={true} />
+      {/each}
+    </div>
+  {/if}
 </div>
