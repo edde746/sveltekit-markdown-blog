@@ -23,7 +23,12 @@ export const parseHeader = (content: string) => {
   }
 
   // Return the parsed header object
-  return parsedHeader;
+  return {
+    ...parsedHeader,
+    Published: new Date(parsedHeader.Published),
+    Updated: parsedHeader.Updated ? new Date(parsedHeader.Updated) : undefined,
+    Categories: parsedHeader.Categories ? parsedHeader.Categories.split(',').map((c) => c.trim()) : [],
+  };
 };
 
 export const slugify = (str: string) =>
