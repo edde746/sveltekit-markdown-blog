@@ -16,6 +16,5 @@ type Article = {
   Published: Date;
   Updated?: Date;
   Categories: string[];
-  Description?: string;
   Thumbnail: string;
 };
