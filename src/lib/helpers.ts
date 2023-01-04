@@ -25,3 +25,22 @@ export const parseHeader = (content: string) => {
   // Return the parsed header object
   return parsedHeader;
 };
+
+export const slugify = (str: string) =>
+  str
+    .toLowerCase()
+    .replace(/[^\w ]+/g, '')
+    .replace(/ +/g, '-');
+
+export const stringColor = (str: string) => {
+  // hash the string
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  // generate a random hsv hue value
+  const hue = (hash % 360) / 360;
+
+  return `hsl(${hue * 360}, 58%, 45%)`;
+};

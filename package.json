@@ -25,6 +25,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@sveltejs/adapter-static": "^1.0.0"
+    "@sveltejs/adapter-static": "^1.0.0",
+    "classnames": "^2.3.2"
   }
 }
