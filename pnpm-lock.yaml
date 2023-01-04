@@ -1,6 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@steeze-ui/feather-icons': ^1.3.0
+  '@steeze-ui/svelte-icon': ^1.3.2
   '@sveltejs/adapter-auto': ^1.0.0
   '@sveltejs/adapter-static': ^1.0.0
   '@sveltejs/kit': ^1.0.0
@@ -17,6 +19,8 @@ specifiers:
   vite: ^4.0.0
 
 dependencies:
+  '@steeze-ui/feather-icons': 1.3.0
+  '@steeze-ui/svelte-icon': 1.3.2
   '@sveltejs/adapter-static': 1.0.0_@sveltejs+kit@1.0.1
   classnames: 2.3.2
 
@@ -250,6 +254,14 @@ packages:
 
   /@polka/url/1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
+
+  /@steeze-ui/feather-icons/1.3.0:
+    resolution: {integrity: sha512-I1smxP+LFQDL09ccVQ3IKx6eyORnbzVY0g4Fn7AdNmnwuE2XAlfi/F7r5ti2OlgVbkSMwFjM5VpqLCe6dIykMg==}
+    dev: false
+
+  /@steeze-ui/svelte-icon/1.3.2:
+    resolution: {integrity: sha512-Y7tH9UKeDYLfBicWLw4n4mhgfuSwgEdtq9wog7H+DjvfpTvea5SEqjHI8onoKZonJqAaUBGVjH02LAiqRWu+cw==}
+    dev: false
 
   /@sveltejs/adapter-auto/1.0.0_@sveltejs+kit@1.0.1:
     resolution: {integrity: sha512-yKyPvlLVua1bJ/42FrR3X041mFGdB4GzTZOAEoHUcNBRE5Mhx94+eqHpC3hNvAOiLEDcKfVO0ObyKSu7qldU+w==}

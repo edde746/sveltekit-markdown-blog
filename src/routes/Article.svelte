@@ -20,7 +20,7 @@
     />
     <div>
       <div class="flex gap-2">
-        {#each article.Categories.split(',') as category}
+        {#each article.Categories || [] as category}
           <span
             class="text-white text-xs font-semibold px-2 py-1 rounded-md uppercase"
             style="background:{stringColor(category)}"
@@ -53,7 +53,7 @@
     />
     <div class="absolute inset-x-0 bottom-0 p-4">
       <div class="flex gap-2">
-        {#each article.Categories.split(',') as category}
+        {#each article.Categories || [] as category}
           <span
             class="text-white text-xs font-semibold px-2 py-1 rounded-md uppercase"
             style="background:{stringColor(category)}"

@@ -8,7 +8,7 @@ export const load: PageServerLoad = async ({ url }) => {
 
   // return the list of files
   return {
-    articles: await Promise.all(
+    articles: (await Promise.all(
       files.map(async (file) => {
         // read the file
         const content = await fs.readFile(`./posts/${file}`, 'utf-8');
@@ -20,8 +20,9 @@ export const load: PageServerLoad = async ({ url }) => {
           ...header,
           Published: new Date(header.Published),
           Updated: header.Updated ? new Date(header.Updated) : undefined,
+          Categories: header.Categories ? header.Categories.split(',').map((c) => c.trim()) : [],
         };
       })
-    ).then((articles) => articles.sort((a, b) => b.Published.getTime() - a.Published.getTime())),
+    ).then((articles) => articles.sort((a, b) => b.Published.getTime() - a.Published.getTime()))) as Article[],
   };
 };

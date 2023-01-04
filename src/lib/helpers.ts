@@ -44,3 +44,10 @@ export const stringColor = (str: string) => {
 
   return `hsl(${hue * 360}, 58%, 45%)`;
 };
+
+export const titleCase = (str: string) =>
+  str
+    .toLowerCase()
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
